@@ -20,6 +20,14 @@ public class TaskManager {
     static final String FILE_NAME = "task.cvs";
     static String[][] tasks;
 
+    public static void printOptions(String[] tab) {
+        System.out.println(BLUE);
+        System.out.println("Please select an option: " + RESET);
+        for (String option : tab) {
+            System.out.println(option);
+        }
+    }
+
     public static void main(String[] args) {
         tasks = task(FILE_NAME);
         printOptions(MENU);
@@ -77,15 +85,7 @@ public class TaskManager {
     }
 
 
-    public static void print(String[][] tab) { // drukuje tablice do listy
-        for (int i = 0; i < tab.length; i++) {
-            System.out.print("\n" + i + ":");
-            for (int j = 0; j < tab[i].length; j++) {
-                System.out.print((tab[i][j]) + " ");
-            }
-        }
-        System.out.println();
-    }
+
 
     public static String[][] add1(String[][] tab) {
         Scanner scanner = new Scanner(System.in);
@@ -104,13 +104,23 @@ public class TaskManager {
         tasks[tasks.length - 1][2] = isImportant;
         return tasks;
     }
+    public static void print(String[][] tab) {
+        for (int i = 0; i < tab.length; i++) {
+            System.out.print("\n" + i + ":");
+            for (int j = 0; j < tab[i].length; j++) {
+                System.out.print((tab[i][j]) + " ");
+            }
+        }
+        System.out.println();
+    }
 
     public static int getNumber() {
-        Scanner scan = new Scanner(System.in);
+
         System.out.println("Please select number to remove.");
 
-        String index = scan.nextLine();
-        try {
+        String index = " ";
+        try (Scanner scan = new Scanner(System.in);) {
+            index = scan.nextLine();
 
             while (!isZero(index)) {
                 scan.next();
@@ -151,14 +161,6 @@ public class TaskManager {
         }
     }
 
-    public static void printOptions(String[] tab) {
-        System.out.println(BLUE);
-        System.out.println("Please select an option: " + RESET);
-        for (String option : tab) {
-            System.out.println(option);
 
-        }
-    }
 }
-
 
